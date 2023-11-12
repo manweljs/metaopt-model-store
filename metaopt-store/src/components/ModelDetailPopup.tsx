@@ -4,7 +4,7 @@ import { Button, Skeleton, Space, Tag, message, notification } from 'antd';
 import { DownloadOutlined, WarningOutlined } from "@ant-design/icons"
 
 import { AboutSolverProps, ModelAttachment, ModelDetail, ModelDetailPopupProps, MultipleAttachmentViewerProps, RightPanelProps } from './Interfaces';
-import { HOST } from '../consts';
+import { HOST } from '../variables';
 import { GetModelDetail, PurchaseModel } from '../api';
 import { getRandomImage, initImagePreview, isPhone, youtubeEmbedUrl } from '../functions';
 import PDFViewer from './PDFVeiwer';

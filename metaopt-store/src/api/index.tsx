@@ -1,5 +1,5 @@
 import { message } from "antd"
-import { CLIENT_TOKEN, HOST } from "../consts"
+import { CLIENT_TOKEN, HOST } from "../variables"
 
 export const GetModelDetail = async (modelId: string) => {
     const endpoint = HOST + `/api/Package/Details?Id=${modelId}`
