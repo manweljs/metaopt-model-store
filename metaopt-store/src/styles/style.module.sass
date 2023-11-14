@@ -1,0 +1,72 @@
+
+:root
+    --base-1: #fff
+    --base-2: #f6f8fa
+    --base-3: #ebedf0
+    --base-4: #c9d1d9
+    --base-5: #9fa5ab
+    --text-primary: #24292f
+    --text-secondary: #656d76
+    --icon: #21262d
+    --border: var(--base-3)
+    --border-color: var(--base-3)
+    --primary: #0062ff
+    --secondary: #ff6900
+    --danger: #fc5959
+    --buble-self-background: #bbe3ff
+    --buble-self-color: var(--text-primary)
+    --dark-1: #141414
+    --dark-2: #1f1f1f
+
+    background-color: var(--base-1)
+
+.has_text_primary
+    color: var(--primary)
+
+.model_store
+    background-color: var(--base-1)
+
+.columns
+    display: flex
+    height: 100%
+
+.header
+    height: 500px
+    padding: 1.5rem 0
+    background-color: var(--dark-2)
+    background-image: url(https://meta-opt.s3.ap-southeast-1.amazonaws.com/images/confetti.png)
+    background-size: 60%
+
+    h1
+        font-size: 2em
+        font-weight: 700
+
+    p, h1, h2
+        color: white
+
+    .column
+        position: relative
+
+    .text
+        height: auto
+        display: flex
+        justify-content: center
+        flex-direction: column
+
+    .image .shape
+        width: 350px
+        height: 400px
+        background-color: var(--primary)
+        position: absolute
+        bottom: 0
+        left: 35%
+        border-radius: 0 50px 0 0
+
+    .image
+        display: flex
+        justify-content: center
+
+        img
+            margin: auto
+            height: 480px
+            object-fit: cover
