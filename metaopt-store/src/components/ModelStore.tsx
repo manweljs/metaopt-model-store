@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { GetAllModel } from '../api'
-import { Model } from './Interfaces'
+import { Model, ModelStoreListProps } from './Interfaces'
 import style from "../styles/style.module.sass"
 import { useNavigate } from 'react-router-dom'
+import { Spin } from 'antd'
+import { ModelCard } from './ModelCard'
 
 const img1 = "https://meta-opt.s3.ap-southeast-1.amazonaws.com/images/metaopt-modelworkflow.svg"
 
@@ -31,17 +33,12 @@ const contents = {
 
 export function ModelStore() {
 
-    const [models, setModels] = useState<Model[]>([])
-    const handleGetAllModel = async () => {
-        const response = await GetAllModel()
-    }
 
-    useEffect(() => {
-        handleGetAllModel()
-    }, []);
+
     return (
         <div className={style.model_store}>
             <ModelStoreHeader />
+            <ModelStoreList />
         </div>
     )
 }
@@ -67,5 +64,55 @@ const ModelStoreHeader = () => {
                 </div>
             </div>
         </div >
+    )
+}
+
+const ModelStoreList = () => {
+    const [models, setModels] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    const handleGetAllModel = async () => {
+        setLoading(true)
+        try {
+            const response = await GetAllModel()
+            console.log('response', response)
+            setModels(response.result.items)
+
+        } catch (error) {
+            console.log('error', error)
+        }
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        handleGetAllModel()
+    }, []);
+
+
+    return (
+        <div className="section section-3">
+            <div className="container">
+                <div className="header-box mb-5">
+                    <h3 className='title is-4 mb-0'>Models</h3>
+                </div>
+
+                {loading &&
+                    <div className="w-100 mt-6" style={{ textAlign: "center" }}>
+                        <Spin />
+                    </div>
+                }
+                <div className={style.model_list}>
+                    {
+                        !loading && models.map((item, index) => (
+                            <ModelCard
+                                key={"model-" + index}
+                                model={item}
+                            />
+
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
     )
 }

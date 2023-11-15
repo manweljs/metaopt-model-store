@@ -8,6 +8,7 @@ import { HOST } from '../variables';
 import { GetModelDetail, PurchaseModel } from '../api';
 import { getRandomImage, initImagePreview, isPhone, youtubeEmbedUrl } from '../functions';
 import PDFViewer from './PDFVeiwer';
+import style from "../styles/model_detail.module.sass"
 
 const docs = "https://meta-opt.s3.ap-southeast-1.amazonaws.com/images/docs.png"
 const sheets = "https://meta-opt.s3.ap-southeast-1.amazonaws.com/images/sheets.png"
@@ -16,7 +17,7 @@ const pbix = "https://meta-opt.s3.ap-southeast-1.amazonaws.com/images/pbix.png"
 export default function ModelDetailPopup(props: ModelDetailPopupProps) {
     // const { user, navigate, packageId, close, isOwner = false, chatSocket, theme } = props;
 
-    const { modelId } = props;
+    const { modelId, close } = props;
     const [model, setModel] = useState<ModelDetail | null>(null)
     const [loading, setLoading] = useState<boolean>(false)
     const [displayPDFAttachment, setDisplayPDFAttachment] = useState<boolean>(false)
@@ -60,14 +61,14 @@ export default function ModelDetailPopup(props: ModelDetailPopupProps) {
     }
 
     return (
-        <div className={isPhone() ? 'package-details popup is-mobile' : 'package-details popup '} id='package-details-popup'>
+        <div className={isPhone() ? `${style.model_details} ${style.popup} is-mobile` : `${style.model_details} ${style.popup}`} id='package-details-popup'>
             {displayPDFAttachment && model &&
                 <PDFViewer
                     url={`${HOST}/File/DownloadAttachment?PackageId=${model.id}`}
                     close={() => setDisplayPDFAttachment(false)} />}
             <div className='image-preview-holder' id="#image-preview-holder"></div>
 
-            <div className="popup-box modal-box">
+            <div className={`${style.popup_box} ${style.modal_box}`}>
                 {loading && <div className="p-5"><Skeleton /></div>}
 
                 {model &&
@@ -83,11 +84,11 @@ export default function ModelDetailPopup(props: ModelDetailPopupProps) {
 
                         }
 
-                        <div className="modal-body">
+                        <div className={style.modal_body}>
                             <div className="left-panel p-5">
                                 <div className="header">
-                                    <div className="title-box" >
-                                        <div className="title is-4 mb-2"
+                                    <div className={style.title_box} >
+                                        <div className={` ${style.title} title is-4 mb-2`}
 
                                         >{model.title}</div>
 
@@ -105,16 +106,16 @@ export default function ModelDetailPopup(props: ModelDetailPopupProps) {
                                 </div>
 
                                 <div className="body">
-                                    <div className="section">
-                                        <div className="title">
+                                    <div className={style.section}>
+                                        <div className={style.title}>
                                             Category
                                         </div>
                                         <ul className='tags p-0'>
                                             {model.categories.map(e => <Tag key={e} >{e}</Tag>)}
                                         </ul>
                                     </div>
-                                    <div className="section">
-                                        <div className="title">
+                                    <div className={style.section}>
+                                        <div className={style.title}>
                                             Featured
                                         </div>
                                         <ul className='features p-0'>
@@ -148,7 +149,7 @@ export default function ModelDetailPopup(props: ModelDetailPopupProps) {
 
             </div>
 
-            <div className="overlay" onClick={handleClose}></div>
+            <div className={style.overlay} onClick={handleClose}></div>
         </div>
     )
 
@@ -160,26 +161,25 @@ export default function ModelDetailPopup(props: ModelDetailPopupProps) {
 
 const RightPanel = (props: RightPanelProps) => {
     const { model, close } = props
-    const navigate = useNavigate()
 
     const [api, contextHolder] = notification.useNotification();
-    const openNotification = () => {
-        const btn = (
-            <Space>
-                <Button type="primary" size="small" onClick={() => navigate("/credits")}>
-                    Purchase Credits
-                </Button>
-            </Space>
-        );
-        api.info({
-            message: `We are sorry`,
-            description:
-                `You haven't enough credits`,
-            placement: "top",
-            btn,
-            icon: <WarningOutlined style={{ color: "var(--warning)" }} />
-        });
-    };
+    // const openNotification = () => {
+    //     const btn = (
+    //         <Space>
+    //             <Button type="primary" size="small" onClick={() => navigate("/credits")}>
+    //                 Purchase Credits
+    //             </Button>
+    //         </Space>
+    //     );
+    //     api.info({
+    //         message: `We are sorry`,
+    //         description:
+    //             `You haven't enough credits`,
+    //         placement: "top",
+    //         btn,
+    //         icon: <WarningOutlined style={{ color: "var(--warning)" }} />
+    //     });
+    // };
 
     const handleGetContactPackageId = async () => {
         const data = {
@@ -202,7 +202,7 @@ const RightPanel = (props: RightPanelProps) => {
         // console.log(contactPackageId)
         if (contactPackageId) {
             close()
-            navigate(`/package/run?contactPackageId=${contactPackageId}&packageId=${model.id}&packageName=${model.title}`)
+            window.location.href = `/package/run?contactPackageId=${contactPackageId}&packageId=${model.id}&packageName=${model.title}`
         }
     }
 
@@ -212,10 +212,10 @@ const RightPanel = (props: RightPanelProps) => {
     return (
         <>
             {contextHolder}
-            <div className={isPhone() ? "dn" : "right-panel py-5 pr-5 "}>
+            <div className={isPhone() ? "dn" : `${style.right_panel} py-5 pr-5 `}>
                 <div className="sections">
 
-                    <div className="overview">
+                    <div className={style.overview}>
                         {model && model.videoUrl ?
                             <iframe
                                 width="234"
@@ -264,7 +264,7 @@ export const AboutSolver = (props: AboutSolverProps) => {
     const solver = model.solver
 
     return (
-        <div className="about-solver p-4 my-5">
+        <div className="about_solver p-4 my-5">
             <div className="title is-6">About Solver</div>
             <div className="avatar p-0 mb-3" style={{ width: '80px' }}>
                 <img src={`https://ui-avatars.com/api/?name=${solver.firstName} ${solver.lastName}&rounded=true&background=random`} alt="" />
@@ -316,15 +316,18 @@ const MultipleAttachmentViewer = (props: MultipleAttachmentViewerProps) => {
     }
 
     return (
-        <div className="attachment-viewer">
+        <div className={style.attachment_viewer}>
             <div className="title is-6 mb-2">Attachment</div>
-            <div className="thumbs">
+            <div className={style.thumbs}>
                 {attachments &&
                     attachments.map((item, index) => (
-                        <a href={item.url} title={item.fileName} target='blank_' className='thumb' key={"attachment_" + index}>
-                            <DownloadOutlined className='icon' />
+                        <a href={item.url} title={item.fileName}
+                            target='blank_'
+                            className={style.thumb}
+                            key={"attachment_" + index}>
+                            <DownloadOutlined className={style.icon} />
                             {handleAttachmentThumbnail(item)}
-                            <p className='filename'>{item.fileName}</p>
+                            <p className={style.filename}>{item.fileName}</p>
                         </a>
                     ))
                 }

@@ -1,0 +1,170 @@
+
+.model_card
+    position: relative
+    display: grid
+    grid-template-rows: 80px 90px auto
+    width: 100%
+    border: 1px solid var(--border-color)
+    border-radius: 10px
+    overflow: hidden
+    background-color: var(--base-1)
+    cursor: pointer
+    height: fit-content
+    transition-duration: .3s
+
+    .PendingRelease
+        position: absolute
+        z-index: 2
+
+    .industry_tag_box
+        display: flex
+        gap: 8px
+        padding: 10px 15px
+        flex-wrap: wrap
+
+        .tag
+            font-size: .9em
+            background-color: var(--base-3)
+            color: var(--text-primary)
+
+    .header.is-customer
+        height: 100%
+        &.is-search
+            height: 100%
+    .header
+        height: 100%
+        padding: 10px 15px 15px
+        // height: 280px
+        position: relative
+        isolation: isolate
+
+        .title_box
+            height: 80px
+            .title
+                position: absolute
+                left: 0
+                top: 0
+                height: 70px
+                z-index: 5
+                padding: 10px 16px 4px 16px
+                display: flex
+                align-items: flex-end
+                width: 100%
+                color: white
+                font-size: 1.1em
+                text-shadow: 2px 2px 0 rgba(6, 36, 75, 0.5)
+
+        .model_card_image
+            width: 100%
+            height: 80px
+            position: absolute
+            top: 0
+            left: 0
+
+            img
+                width: 100%
+                height: 100%
+                object-fit: cover
+
+            &::after
+                content: ""
+                position: absolute
+                top: 0
+                left: 0
+                width: 100%
+                height: 100%
+                background-color: rgba(0, 0, 0, 0.5)
+
+        .title
+            margin: 0
+            display: -webkit-box
+            -webkit-line-clamp: 3
+            -webkit-box-orient: vertical
+            overflow: hidden
+
+        .review-box
+            margin-bottom: 10px
+            font-size: .85em
+
+        .model_title
+            display: -webkit-box
+            -webkit-line-clamp: 1
+            -webkit-box-orient: vertical
+        .description
+            display: -webkit-box
+            max-width: 100%
+            -webkit-line-clamp: 3
+            -webkit-box-orient: vertical
+            overflow: hidden
+            opacity: .9
+            font-size: .9em
+
+        .panel-card-button
+            position: absolute
+            bottom: 10px
+            display: flex
+            gap: 5px
+            flex-wrap: wrap
+
+            button
+                .anticon
+                    margin-right: 4px
+                span
+                    margin-inline-start: 0
+
+            &.is-loading
+                pointer-events: none
+
+                &.button
+
+                    &::after
+                        content: ''
+                        position: absolute
+                        width: 100%
+                        height: 100%
+                        // background-color: var(--base-1)
+                        background: linear-gradient(270deg, var(--primary), #bddeff)
+                        background-size: 400% 400%
+                        animation: gradienButton 2s ease infinite
+
+        @media screen and (max-width: 1032px)
+            .panel-card-button .button
+                font-size: .9em
+                padding: 5px 10px
+
+    .short_description
+        display: -webkit-box
+        -webkit-box-orient: vertical
+        -webkit-line-clamp: 3
+        overflow: hidden
+        text-overflow: ellipsis
+        font-size: .9em
+        opacity: .8
+
+    &:hover
+        border-color: var(--primary)
+        background-color: var(--base-2)
+        box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1)
+
+    .default
+        width: 100%
+        height: 18px
+        margin-bottom: 8px
+        background: linear-gradient(344deg, var(--base-3), #90909085)
+        background-size: 400% 400%
+        animation: textloading 1s ease infinite
+
+        &.half
+            width: 80%
+
+    .default-img
+        height: 30px
+        width: 34px
+        margin-right: 10px
+        border-radius: 50%
+        background: linear-gradient(344deg, var(--base-3), #90909085)
+        background-size: 400% 400%
+        animation: textloading 1s ease infinite
+
+    .price
+        font-size: .9em

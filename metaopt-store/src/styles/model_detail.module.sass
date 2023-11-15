@@ -1,0 +1,375 @@
+$ease: cubic-bezier(.85,0,.15,1)
+$transition-delay-increment: 0s
+$border: 1px solid var(--border-color)
+
+.model_details
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 100
+    height: 100vh
+    width: 100vw
+
+    .thumb img
+        position: relative
+        width: 100%
+        height: 80px
+        object-fit: cover
+        border-radius: 10px
+
+    .thumb
+        position: relative
+
+        &:hover
+            img
+                filter: brightness(.4)
+            .icon
+                opacity: 1
+
+    .thumb .overlay
+        background-color: rgba(0, 0, 0, .7)
+        width: 100%
+        height: 100%
+        position: absolute
+        z-index: 1
+
+    .thumb .filename
+        width: 70px
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        font-size: .8em
+
+    .thumb .icon
+        position: absolute
+        z-index: 2
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -80%)
+        color: white
+        opacity: 0
+        transition: .2s
+        font-size: 2em
+
+    .attachment_viewer .thumbs
+        display: grid
+        grid-template-columns: repeat(3, 1fr)
+        gap: 5px
+
+    .attachment_viewer
+        width: 100%
+        object-fit: cover
+
+        .file-viewer-box
+            height: 236px
+            object-fit: cover
+            overflow: hidden
+            border-radius: 10px
+            cursor: pointer
+            border: 1px solid var(--base-3)
+            transition: .2s
+            display: flex
+            align-items: center
+            justify-content: center
+            padding: 16px
+
+            &:hover
+                filter: brightness(.8)
+
+            .pg-viewer-wrapper
+                overflow: hidden
+            .pg-viewer
+                display: flex
+                justify-content: center
+                align-items: center
+
+            .pdf-canvas
+                width: 202px
+                display: flex
+                align-items: center
+                justify-content: center
+                overflow: hidden
+
+                &:not(:nth-of-type(2))
+                    display: none
+
+                canvas
+                    border-radius: 6px
+                    width: 125px
+
+    .title_box
+        position: relative
+        isolation: isolate
+        margin-bottom: 1.5rem
+        height: 80px
+
+        &::after
+            content: ""
+            background-color: rgba(0, 0, 0, .5)
+            height: 100%
+            width: 100%
+            position: absolute
+            top: 0
+            left: 0
+            border-radius: 10px
+            z-index: -1
+
+        img
+            position: absolute
+            top: 0
+            z-index: -1
+            width: 100%
+            border-radius: 10px
+            height: 80px
+            object-fit: cover
+            filter: brightness(.5)
+
+        .title
+            position: absolute
+            z-index: 2
+            color: white
+            text-shadow: 2px 2px 0 rgba(1, 40, 58, 0.753)
+            height: 100%
+            width: 100%
+            display: flex
+            justify-content: flex-start
+            align-items: flex-end
+            padding: 12px
+
+    .addtocart-message
+        display: flex!important
+        position: fixed
+        z-index: 99
+        top: 50px
+        left: 50%
+        transform: translate(-50%, 10px)
+        padding: 40px 80px
+        background-color: var(--base-3)
+        border-radius: 0px
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        grid-gap: 20px
+        visibility: hidden
+        transition: .2s
+
+        &.show
+            visibility: visible
+            transform: translate(-50%, 50px)
+
+        .delete
+            position: absolute
+            top: 10px
+            right: 10px
+        .icon
+            font-size: 3em
+
+    .popup_box
+        width: 1100px
+        position: absolute
+        right: 0
+        background: var(--base-1)
+        height: 100%
+        overflow: auto
+
+    .modal_box
+        animation: open-to-left .5s $ease
+        .modal_body
+            display: grid
+            grid-template-columns: auto 260px
+
+            .body .title
+                font-size: 1.1em
+
+        @keyframes open-to-left
+            0%
+                width: 0
+            100%
+                width: 1100px
+
+    .delete
+        position: fixed
+        right: 40px
+        top: 20px
+        background: #ffffff0e
+        padding: 14px
+
+        &:hover
+            background: #ffffff44
+
+    .section
+        padding: 30px 0
+        border-top: 1px solid var(--border-color)
+
+        .title
+            font-size: 1.1em
+            margin-bottom: 1rem
+            font-weight: 700
+
+        ul
+            padding-left: 1.3em
+
+        li
+            list-style: disc
+
+        .discussion-box
+            display: flex
+            flex-direction: column
+            .textarea
+                width: 100%
+                min-height: 80px
+                border-radius: 0px
+                background: var(--base-3)
+                border: $border
+
+                .button
+                    align-self: flex-end
+
+            .messages
+                padding: 24px 0
+                margin: 24px 0
+
+                .comment-in-review
+                    padding: 10px
+                    border: $border
+                    text-align: center
+                    border-radius: 0px
+                    background-color: var(--base-3)
+
+                li
+                    list-style: none
+
+                .comment
+                    display: flex
+
+                .comment-message
+                    width: 100%
+                    border-bottom: $border
+
+                .comment-user
+                    height: 40px
+                    width: 40px
+
+                .comment-date
+                    font-weight: 400
+
+                .comment-body
+                    font-size: .9em
+                    opacity: .8
+
+                img
+                    border-radius: 50%
+
+                .username
+                    font-weight: 500
+
+                .comment-pending
+                    .comment-message
+
+                        display: flex
+                        justify-content: space-between
+                        align-items: center
+
+                        .button
+                            font-size: .8em
+
+                        .denied
+                            background-color: var(--base-3)
+                            padding: 3px 10px
+                            font-size: 1em
+                            border-radius: 0px
+
+                            &:hover
+                                background-color: var(--base-4)
+
+                        .button-group
+                            cursor: pointer
+                            display: flex
+
+    .right_panel
+        padding-right: 1.5rem
+
+        .sections
+            position: sticky
+            top: 1.5rem
+
+        .about-solver
+            border-radius: 10px
+            border: $border
+
+        .overview
+            background: var(--base-3)
+            border-radius: 10px
+            overflow: hidden
+
+            img
+                height: 150px
+                width: 100%
+                object-fit: cover
+
+            button
+                width: 100%
+
+        .solver-profile
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+
+            img
+                width: 100px
+                border-radius: 50%
+
+            .description
+                display: -webkit-box
+                max-width: 100%
+                -webkit-line-clamp: 4
+                -webkit-box-orient: vertical
+                overflow: hidden
+                opacity: .7
+
+    .overlay
+        background: #000000b4
+        width: 100%
+        height: 100%
+
+.is_preview_able
+    cursor: zoom-in
+
+.image_preview
+    position: fixed
+    top: 0
+    left: 0
+    height: 100vh
+    width: 100vw
+    z-index: 5
+
+    .overlay
+        position: absolute
+        top: 0
+        left: 0
+        height: 100%
+        width: 100%
+        background-color: rgba(0, 0, 0, .7)
+        z-index: 3
+
+    .preview-body
+
+        position: absolute
+        left: 50%
+        top: 50%
+        z-index: 5
+        transform: translate(-50%, -50%)
+        display: flex
+        justify-content: center
+        align-items: center
+
+        img
+            max-width: 80vw
+            width: 100%
+
+    .delete
+        position: absolute
+        z-index: 10
+        top: 30px
+        right: 30px

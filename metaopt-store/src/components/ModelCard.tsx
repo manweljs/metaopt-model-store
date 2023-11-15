@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { ModelCardProps } from "./Interfaces";
 import { getRandomImage } from "../functions";
 import ModelDetailPopup from "./ModelDetailPopup";
-import { Dropdown, Spin, Tag } from "antd";
+import { Tag } from "antd";
+import style from "../styles/model_card.module.sass"
 
-
-export default function PackageCard(props: ModelCardProps) {
+export function ModelCard(props: ModelCardProps) {
     const { model } = props;
     const [showDetailModal, setShowDetailModal] = useState<boolean>(false)
     const [modelImage, setModelImage] = useState<string>("")
@@ -20,7 +20,6 @@ export default function PackageCard(props: ModelCardProps) {
     }, [model])
 
 
-    // console.log(pack)
     return (
         <>
             {showDetailModal &&
@@ -31,31 +30,32 @@ export default function PackageCard(props: ModelCardProps) {
             }
 
             <div onClick={showDetails}
-                className={"package-card"}
+                className={style.model_card}
             >
-                <div className={`header`}>
+                <div className={style.header}>
 
-                    <div className="title-box">
+                    <div className={style.title_box}>
                         {model.isPendingRelease &&
                             <Tag className={"PendingRelease"}>Pending Release</Tag>
                         }
-                        <div className="title is-6 is-link mb-3 package-title"
+                        <div className={`${style.title} title is-6  mb-3 ${style.model_title}`}
                         >
                             {model.title}
                         </div>
-                        <div className="package-card-image">
+                        <div className={style.model_card_image}>
                             <img src={modelImage} alt="" />
                         </div>
 
                     </div>
                 </div>
 
-
-                <div className="short-description">
-                    {model.shortDescription}
+                <div className="p-3">
+                    <div className={style.short_description}>
+                        {model.shortDescription}
+                    </div>
                 </div>
 
-                <div className="industry-tag-box">
+                <div className={style.industry_tag_box}>
                     {model.industries.map((item, index) => {
                         return <div className="tag" key={"industry-" + index}> {item} </div>
                     })}
@@ -63,13 +63,6 @@ export default function PackageCard(props: ModelCardProps) {
                     {model.categories.map((item, index) => {
                         return <div className="tag" key={"category-" + index}> {item} </div>
                     })}
-                </div>
-
-                <div className="footer">
-                    <img src={`https://ui-avatars.com/api/?name=${model.solverName}&rounded=true&background=random`} alt="" />
-                    <div className="author-name">
-                        {model.solverName}
-                    </div>
                 </div>
 
             </div>

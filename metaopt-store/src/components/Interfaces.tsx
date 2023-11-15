@@ -85,3 +85,7 @@ export interface MultipleAttachmentViewerProps {
     model: ModelDetail;
 
 }
+
+export interface ModelStoreListProps {
+    models: Model[] | []
+}

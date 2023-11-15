@@ -1,13 +1,14 @@
 import { message } from "antd"
-import { CLIENT_TOKEN, HOST } from "../variables"
+import { HOST } from "../variables"
 
 export const GetAllModel = async () => {
     const endpoint = HOST + `/api/Partner/Packages`
+    console.log('HOST', HOST)
 
     const method = "GET"
     const headers = {
         'Content-Type': 'application/json',
-        "X-MetaOpt-ApiKey": CLIENT_TOKEN
+        // "X-MetaOpt-ApiKey": CLIENT_TOKEN
     }
 
     const response = await fetch(endpoint, { method, headers })
@@ -24,7 +25,7 @@ export const GetModelDetail = async (modelId: string) => {
     const method = "GET"
     const headers = {
         'Content-Type': 'application/json',
-        "X-MetaOpt-ApiKey": CLIENT_TOKEN
+        // "X-MetaOpt-ApiKey": CLIENT_TOKEN
     }
 
     const response = await fetch(endpoint, { method, headers })
@@ -40,7 +41,7 @@ export const PurchaseModel = async (data: any) => {
     const method = "POST"
     const headers = {
         'Content-Type': 'application/json',
-        "X-MetaOpt-ApiKey": CLIENT_TOKEN
+        // "X-MetaOpt-ApiKey": CLIENT_TOKEN
     }
     const response = await fetch(endpoint, { method, headers, body: data })
         .then(r => r.json()).then(r => { return r })

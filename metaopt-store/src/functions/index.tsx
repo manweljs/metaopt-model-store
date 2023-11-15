@@ -2,6 +2,8 @@ import React from "react";
 import { render } from "react-dom";
 import ImagePreview from "../components/ImagePreview";
 
+import style from "../styles/model_detail.module.sass"
+
 export function getRandomInt(max: number = 100) {
     return Math.floor(Math.random() * max);
 }
@@ -52,7 +54,7 @@ export function initImagePreview() {
     const images = document.querySelectorAll(".image-preview-able img")
     Array.from(images).forEach((item: Element) => {
         if (item instanceof HTMLElement) {
-            item.classList.add("is-preview-able");
+            item.classList.add(style.is_preview_able)
             let src = item.getAttribute('src') as string;
             item.onclick = function () {
                 previewImage(src);
