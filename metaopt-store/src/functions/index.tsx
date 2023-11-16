@@ -1,8 +1,13 @@
 import React from "react";
 import { render } from "react-dom";
-import ImagePreview from "../components/ImagePreview";
-
+import ImagePreview from "../components/model/ImagePreview";
+import cookie from "react-cookies"
 import style from "../styles/model_detail.module.sass"
+import { USER_AUTH_TOKEN } from "../variables";
+
+export const getToken = (): string => {
+    return cookie.load(USER_AUTH_TOKEN)
+}
 
 export function getRandomInt(max: number = 100) {
     return Math.floor(Math.random() * max);
@@ -67,3 +72,4 @@ export function initImagePreview() {
         return render(<ImagePreview src={src} />, document.querySelector(".image-preview-holder"))
     }
 }
+

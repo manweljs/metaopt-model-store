@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { ModelCardProps } from "./Interfaces";
-import { getRandomImage } from "../functions";
+import { ModelCardProps } from "../../interfaces";
+import { getRandomImage } from "../../functions";
 import ModelDetailPopup from "./ModelDetailPopup";
 import { Tag } from "antd";
-import style from "../styles/model_card.module.sass"
+import style from "../../styles/model_card.module.sass"
 
 export function ModelCard(props: ModelCardProps) {
     const { model } = props;

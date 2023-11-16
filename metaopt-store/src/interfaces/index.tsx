@@ -1,8 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
 
-
-
 export type Model = {
     id: string;
     title: string;
@@ -88,4 +86,8 @@ export interface MultipleAttachmentViewerProps {
 
 export interface ModelStoreListProps {
     models: Model[] | []
+}
+
+export interface FormForgotPasswordProps {
+    setForgotPassword: Dispatch<SetStateAction<boolean>>
 }

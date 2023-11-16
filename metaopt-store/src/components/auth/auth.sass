@@ -1,0 +1,257 @@
+@import '../../styles/components/color'
+
+body.dark-theme, body.light-theme
+    .disable
+        pointer-events: none
+        opacity: .5
+
+    .external-auth
+        width: 100%
+        .item
+            width: 100%
+            height: auto
+            padding: 10px
+            margin-bottom: 10px
+
+    .auth
+        .container
+            height: 100vh
+            overflow: auto
+        .field .label
+            font-size: .9em
+            font-weight: 500
+            opacity: 1
+            margin-bottom: 5px
+        a
+            color: $primary
+        .reset-link-sent
+            text-align: center
+
+            img
+                width: 80px
+
+        .ant-radio-group
+            display: grid
+            grid-template-columns: repeat(2, 1fr)
+            .ant-radio-button, .ant-radio-button-wrapper
+                width: 100%
+                text-align: center
+
+        .ant-radio-button-checked
+            background-color: rgb(0 81 255 / 5%)
+
+        .role-box-select
+            display: grid
+            grid-template-columns: 1fr 1fr
+            width: 100%
+
+            .option
+                border: $border
+                padding: 10px
+                text-align: center
+                cursor: pointer
+                opacity: .6
+                background-color: var(--base-3)
+
+                &.is-select
+                    border-color: $primary
+                    opacity: 1
+                    background-color: $primary-transparent
+                    color: $primary
+
+        .hero
+            display: flex
+            flex-direction: row
+
+        .auth-img
+            min-height: 100vh
+            width: 30%
+            background-image: url('../../img/auth-img.png')
+            background-position: center
+            object-fit: cover
+
+        .auth-logo
+            position: absolute
+            top: 40px
+            left: 0
+            width: 240px
+
+        .form-holder
+            display: flex
+            justify-content: center
+            align-items: center
+            flex-direction: column
+            margin: auto
+            height: 100%
+            position: relative
+            max-width: 500px
+
+            .message-error
+                text-align: center
+                border-radius: 10px
+                border: $border
+                padding: 10px
+                width: 100%
+                background-color: $danger-transparent
+                border-color: $danger
+                // display: none
+
+                .show
+                    display: block
+
+            .login-form, .register-form, .forgot-password-form
+                position: relative
+                width: 100%
+                background-color: var(--base-2)
+                border: $border
+                border-radius: 10px
+                padding: 30px
+                color: var(--text-primary)
+
+                .password-field
+                    p
+                        display: none
+
+                .error
+                    color: $danger
+                    font-size: .8em
+
+                .icon
+                    color: var(--base-3)
+
+                .form-header
+                    h3
+                        font-size: 1.5em
+                        font-weight: 700
+
+                    p
+                        opacity: 1
+                        font-size: .9em
+
+                .button
+                    width: 150px
+
+                .input
+                    background-color: var(--base-3)
+                    border: $border
+
+                .form-footer
+                    width: 100%
+                    position: absolute
+                    bottom: -50px
+                    left: 0
+                    text-align: center
+
+                    &.has-border
+                        cursor: pointer
+                        border: $border
+                        border-radius: 0
+                        padding: 5px
+
+                        &:hover
+                            background-color: var(--base-2)
+
+                .field
+                    width: 100%
+
+                    .forgot-password
+                        font-weight: 400
+                        text-align: right
+                        cursor: pointer
+                        opacity: 1
+                        font-size: .9em
+
+                        &:hover
+                            color: $primary
+
+                .radio
+                    &:hover
+                        color: $primary
+
+            .login-form, .forgot-password-form
+                display: none
+
+body.light-theme
+    .auth
+
+        .reset-password-box
+            width: 500px
+            border: $border
+            padding: 30px
+            margin: auto
+
+            .reset-password-form
+                .button
+                    width: 180px
+        .reset-link-sent
+            img
+                height: 50px
+                margin-bottom: 1em
+
+        .reset-password-success
+            .button
+                width: 100%
+
+        .reset-link-sent
+            text-align: center
+
+        .auth-img
+            background-image: url('../../img/auth-img.png')
+
+        .form-holder
+
+            .login-form, .register-form, .forgot-password-form
+                background-color: var(--base-1)
+                border: $border
+                color: var(--text-primary)
+
+                .form-header
+                    h3
+                        font-size: 1.5em
+                        font-weight: 700
+
+                    p
+                        opacity: .8
+
+                .button
+                    width: 150px
+
+                .input
+                    background-color: var(--base-2)
+                    border: $border
+
+                .field
+                    width: 100%
+
+                .form-footer
+
+                    &.has-border
+                        border: $border
+
+                        &:hover
+                            background-color: var(--base-2)
+
+.desktop-size-required
+    height: 100vh
+    width: 100vw
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+    .auth-logo
+        position: absolute
+        top: 40px
+        width: 240px
+        margin: auto
+
+    .laptop
+        width: 60%
+
+    p
+        opacity: .7
+
+    .button
+        position: absolute
+        bottom: 40px
+        width: 80%

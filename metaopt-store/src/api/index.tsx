@@ -1,5 +1,66 @@
 import { message } from "antd"
-import { HOST } from "../variables"
+import { getToken } from "functions"
+import { HOST } from "variables"
+
+
+
+export const AccountLogin = async (data: any) => {
+    const endpoint = HOST + "/api/Account/Login"
+    const method = "POST"
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+
+    const body = JSON.stringify(data)
+
+    const response = await fetch(endpoint, { method, headers, body })
+    if (response.status === 500) {
+        message.error(response.statusText)
+        return
+    }
+
+    return response.json()
+
+}
+
+
+export const AccountRegister = async (data: any) => {
+    const endpoint = HOST + "/api/Account/Register"
+    const method = "POST"
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+
+    const body = JSON.stringify(data)
+    const response = await fetch(endpoint, { method, headers, body })
+        .then(r => r.json()).then((r) => { return r })
+
+    return response
+
+
+}
+
+
+export const ResetPassword = async (data: any) => {
+    const endpoint = HOST + `/api/Account/SendPasswordResetCode`
+    const method = "POST"
+    const response = await fetch(endpoint, { method, body: data })
+    if (response.status === 500) {
+        message.error(response.statusText)
+        return
+    }
+    return response.json()
+}
+
+export async function GetUser() {
+    const endpoint = HOST + '/api/Account/Profile'
+    const method = "GET"
+    const headers = { "Authorization": `Bearer ${getToken()}` }
+    const response = await fetch(endpoint, { method, headers })
+        .then(r => r.json()).then(r => { return r }).catch((err) => { console.error(err) })
+
+    return response
+}
 
 export const GetAllModel = async () => {
     const endpoint = HOST + `/api/Partner/Packages`

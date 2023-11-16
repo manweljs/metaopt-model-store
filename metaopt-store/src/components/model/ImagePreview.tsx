@@ -1,6 +1,6 @@
 import React from 'react'
 import { unmountComponentAtNode } from 'react-dom';
-import style from "../styles/model_detail.module.sass"
+import style from "../../styles/model_detail.module.sass"
 
 function ImagePreview(props: { src: string }) {
 

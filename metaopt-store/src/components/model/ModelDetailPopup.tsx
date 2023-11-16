@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Button, Skeleton, Space, Tag, message, notification } from 'antd';
 import { DownloadOutlined, WarningOutlined } from "@ant-design/icons"
 
-import { AboutSolverProps, ModelAttachment, ModelDetail, ModelDetailPopupProps, MultipleAttachmentViewerProps, RightPanelProps } from './Interfaces';
-import { HOST } from '../variables';
-import { GetModelDetail, PurchaseModel } from '../api';
-import { getRandomImage, initImagePreview, isPhone, youtubeEmbedUrl } from '../functions';
+import { AboutSolverProps, ModelAttachment, ModelDetail, ModelDetailPopupProps, MultipleAttachmentViewerProps, RightPanelProps } from '../../interfaces';
+import { HOST } from '../../variables';
+import { GetModelDetail, PurchaseModel } from '../../api';
+import { getRandomImage, initImagePreview, isPhone, youtubeEmbedUrl } from '../../functions';
 import PDFViewer from './PDFVeiwer';
-import style from "../styles/model_detail.module.sass"
+import style from "../../styles/model_detail.module.sass"
 
 const docs = "https://meta-opt.s3.ap-southeast-1.amazonaws.com/images/docs.png"
 const sheets = "https://meta-opt.s3.ap-southeast-1.amazonaws.com/images/sheets.png"
@@ -163,24 +162,6 @@ const RightPanel = (props: RightPanelProps) => {
     const { model, close } = props
 
     const [api, contextHolder] = notification.useNotification();
-    // const openNotification = () => {
-    //     const btn = (
-    //         <Space>
-    //             <Button type="primary" size="small" onClick={() => navigate("/credits")}>
-    //                 Purchase Credits
-    //             </Button>
-    //         </Space>
-    //     );
-    //     api.info({
-    //         message: `We are sorry`,
-    //         description:
-    //             `You haven't enough credits`,
-    //         placement: "top",
-    //         btn,
-    //         icon: <WarningOutlined style={{ color: "var(--warning)" }} />
-    //     });
-    // };
-
     const handleGetContactPackageId = async () => {
         const data = {
             packageId: model.id,

@@ -1,10 +1,12 @@
 import React from 'react';
-import { ModelStore } from './components/ModelStore';
+import { ModelStore } from './components/model/ModelStore';
 
-function App() {
+
+const App = () => {
+
   return (
     <ModelStore />
   );
-}
+};
 
 export default App;

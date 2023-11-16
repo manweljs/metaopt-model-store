@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { GetAllModel } from '../api'
-import { Model, ModelStoreListProps } from './Interfaces'
-import style from "../styles/style.module.sass"
-import { useNavigate } from 'react-router-dom'
+import { GetAllModel } from '../../api'
+import style from "../../styles/style.module.sass"
 import { Spin } from 'antd'
 import { ModelCard } from './ModelCard'
 
